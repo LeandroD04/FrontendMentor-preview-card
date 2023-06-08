@@ -1,0 +1,262 @@
+/* ========== FONTS ========== */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Montserrat:wght@500;700&display=swap');
+
+/* ========== VARIABLES ========== */
+:root {
+  /* ===== Colors ===== */
+  /* HSL values */
+  --hsl-primary-400: 158, 36%, 37%;
+
+  --hsl-secondary-400: 30, 38%, 92%;
+
+  --hsl-neutral-100: 0, 0%, 100%;
+  --hsl-neutral-800: 228, 12%, 48%;
+  --hsl-neutral-900: 212, 21%, 14%;
+
+  /* Colors */
+  --clr-primary-400: hsl(var(--hsl-primary-400));
+
+  --clr-secondary-400: hsl(var(--hsl-secondary-400));
+
+  --clr-neutral-100: hsl(var(--hsl-neutral-100));
+  --clr-neutral-800: hsl(var(--hsl-neutral-800));
+  --clr-neutral-900: hsl(var(--hsl-neutral-900));
+
+  /* ===== Fonts ===== */
+  /* Font family */
+  --ff-montserrat: 'Montserrat', sans-serif;
+  --ff-fraunces: 'Fraunces', serif;
+
+  --ff-body: var(--ff-montserrat);
+  --ff-accent: var(--ff-fraunces);
+
+  /* Font weight */
+  --fw-regular: 500;
+  --fw-bold: 700;
+
+  /* Font size */
+  --fs-300: .8125rem;
+  --fs-400: .875rem;
+  --fs-500: 1rem;
+  --fs-600: 1.125rem;
+  --fs-700: 1.25rem;
+  --fs-800: 1.5rem;
+  --fs-850: 2rem;
+  --fs-900: 2.5rem;
+  --fs-950: 3rem;
+
+  --fs-primary-heading: var(--fs-850);
+  --fs-secondary-heading: var(--fs-800);
+  --fs-body: var(--fs-400);
+  --fs-button: var(--fs-500);
+}
+
+@media (min-width: 40em) {
+  :root {
+    --fs-primary-heading: var(--fs-900);
+    --fs-body: var(--fs-600);
+  }
+}
+
+/* ========== RESET ========== */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+body,
+html {
+  height: 100%;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========== GENERAL STYLING ========== */
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  color: var(--clr-neutral-800);
+  background-color: var(--clr-secondary-400);
+}
+
+@media (min-width: 40em) {
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+  }
+}
+
+.button {
+  background-color: var(--clr-primary-400);
+  color: var(--clr-neutral-100);
+  display: inline-flex;
+  line-height: 1;
+  padding: 1rem;
+  justify-content: center;
+  gap: .5rem;
+  border-radius: .5rem;
+  border: none;
+
+  transition: background-color .2s ease-in-out;
+}
+
+.button:is(:hover, :focus-visible) {
+  background-color: hsl(158, 36%, 17%);
+}
+/* ========== PRODUCT PREVIEW ========== */
+.product-preview {
+  --padding: 1.5rem;
+  --border-radius: 1rem;
+
+  max-width: 46rem;
+  max-height: 34rem;
+  display: grid;
+  background-color: var(--clr-neutral-100);
+  margin: 1.5rem 1rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+@media (min-width: 40em) {
+  .product-preview {
+    --padding: 2.5rem;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.product-image img {
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 40em) {
+  .img-desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 40em) {
+  .img-mobile {
+    display: none;
+  }
+}
+
+.product-content {
+  padding: var(--padding);
+}
+
+.product-content h3 {
+  text-transform: uppercase;
+  letter-spacing: .5rem;
+}
+
+.product-content h1 {
+  font-family: var(--ff-accent);
+  font-weight: var(--fw-bold);
+  color: var(--clr-neutral-900);
+  font-size: var(--fs-primary-heading);
+
+  line-height: 1;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.price span[data-type="lined"]{
+  text-decoration: line-through;
+}
+
+.price span[data-type="large"] {
+  font-family: var(--ff-accent);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-primary-heading);
+  color: var(--clr-primary-400);
+}
+
+/* ========== UTILITY CLASSES ========== */
+.visually-hidden {
+  position: absolute;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.grid-flow {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.grid-flow[data-spacing="large"] {
+  gap: 1.5rem;
+}
+
+.border {
+  border: 2px solid red;
+}
+
